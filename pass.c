@@ -33,7 +33,7 @@ int main()
 			printf("Password does not match\n");
 			printf("Please try again\n"); //prompts user to try again
 			
-			return main(); //returns to main function
+			break; //end the loop
 		}
 	}
 	
