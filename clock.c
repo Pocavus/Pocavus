@@ -24,7 +24,7 @@ int main()
 
     for(;;) 
 	{
-		/*obtaining time standard*/
+	/*obtaining time standard*/
         char *time_str;
         size_t len;
 
@@ -409,7 +409,7 @@ int main()
 			}	
 		}
 		
-		Sleep(1000);    //sleep one second (1000 milliseconds)
+		Sleep(60000);    //sleep one minute (60,000 milliseconds)
 
 		return main();
 		
