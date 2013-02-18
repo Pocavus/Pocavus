@@ -14,7 +14,7 @@ void putchars(char ch, size_t n)
 /*Main clock function*/
 int main() 
 {
-	int tm_min;	//initialising tm_min variable
+	int tm_min;	//initialising tm_min (minutes) variable
 	
     system("cls");	// clears the screen
 	time_t epoch_time;
@@ -31,7 +31,7 @@ int main()
         time_t clock = time(NULL);
         time_str = ctime(&clock);
         len = strlen(time_str);
-        time_str[--len] = '\0'; // get rid of newline (is this safe???)
+        time_str[--len] = '\0';	// get rid of newline (is this safe???)
 		
 		if (tm_p->tm_hour > 12)	//If hour is pm, take 12 hours away to convert to 12 hour time.
 			{
@@ -39,7 +39,7 @@ int main()
 			}
 			
 		/*switch statement for 'five to', 'ten past' etc.*/
-		switch(tm_p->tm_min)
+		switch(tm_p->tm_min)	//Switch statement involving minutes
 		{			
 			case 1:
 			{
@@ -298,7 +298,7 @@ int main()
 				printf("It's almost a quarter to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 44:
 			{
 				printf("It's almost a quarter to %.2d.\n", tm_p->tm_hour + 1 );
@@ -316,13 +316,13 @@ int main()
 				printf("It's just gone a quarter to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 47:
 			{
 				printf("It's just gone a quarter to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 48:
 			{
 				printf("It's almost ten to %.2d.\n", tm_p->tm_hour + 1 );
@@ -334,7 +334,7 @@ int main()
 				printf("It's almost ten to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 50:
 			{
 				printf("It's ten to %.2d.\n", tm_p->tm_hour + 1 );
@@ -346,13 +346,13 @@ int main()
 				printf("It's just gone ten to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 52:
 			{
 				printf("It's just gone ten to %.2d.\n", tm_p->tm_hour + 1 );
 				break;
 			}
-			
+				
 			case 53:
 			{
 				printf("It's almost five to %.2d.\n", tm_p->tm_hour + 1 );
@@ -405,10 +405,11 @@ int main()
 			{
 				printf("%s", time_str);			
 				printf("It's %.2d minutes past %.2d.\n", tm_p->tm_min, tm_p->tm_hour );
+				break;
 			}	
 		}
 		
-        Sleep(1000);    //sleep one second (1000 milliseconds)
+		Sleep(1000);    //sleep one second (1000 milliseconds)
 
 		return main();
 		
