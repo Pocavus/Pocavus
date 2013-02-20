@@ -1,4 +1,4 @@
-#include <stdio.h>
+	#include <stdio.h>
 	#include <time.h>	//Allows program to deal with time functions
 	#include <windows.h>	//Allows Sleep() function
 	#include <stdlib.h>
