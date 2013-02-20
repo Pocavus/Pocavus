@@ -29,7 +29,7 @@
 		for(;;) 
 		{
 		/*obtaining time standard*/
-			char *time_str;
+			char *time_str; 
 			size_t len;
 
 			time_t clock = time(NULL);
