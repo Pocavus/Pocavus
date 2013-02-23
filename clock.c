@@ -3,32 +3,25 @@
 	#include <windows.h>	//Allows Sleep() function
 	#include <stdlib.h>
 
-	/*function for replacing characters on screen (clearing/refreshing screen)*/
-	void putchars(char ch, size_t n) 
-	{
-		size_t i;
-		for (i = 0; i < n; i++)
-				putchar(ch);
-	}
-
 	/*Main clock function*/
 	int main() 
 	{
 		int tm_min;	//initialising tm_min (minutes) variable
 		int newmin;	//new variable for minute change
-		int n;
 
-		char wordhour[][8] = {{"midnight"},{"one"},{"two"},{"three"},{"four"},{"five"},
+		char wordhour[][9] = {{"midnight"},{"one"},{"two"},{"three"},{"four"},{"five"},
 						{"six"},{"seven"},{"eight"},{"nine"},{"ten"},{"eleven"},{"twelve"}};	//array for converting hours into words
 
-		time_t epoch_time;
+		time_t epoch_time;	//variable for time since epoch
 		struct tm *tm_p;	//time value is tm_p (EG: hour is 'tm_p->tm_hour')
-		epoch_time = time( NULL );
+		epoch_time = time( NULL );	//convert epoch_time into a readable format
 		tm_p = localtime( &epoch_time );	//Get time from local (system) time of the device.
 
 		for(;;) 
 		{
-		/*obtaining time standard*/
+			system("cls");	//clears the screen
+					
+			/*obtaining time standard*/
 			char *time_str; 
 			size_t len;
 
@@ -36,20 +29,16 @@
 			time_str = ctime(&clock);
 			len = strlen(time_str);	//set variable 'len' equal to length of 'time_str' string
 			time_str[--len] = '\0';	// get rid of newline
-			
-			if (tm_p->tm_hour > 12)	//If hour is pm, take 12 hours away to convert to 12 hour time.
-				{
-					tm_p->tm_hour = tm_p->tm_hour - 12;
-				}
-
-			system("cls");	//clears the screen
-
 			newmin = tm_p->tm_min;	//set 'newmin' equal to the current minute
 
-
-				/*switch statements for converting time to words*/
-				switch(newmin)	//Switch statement involving minutes
-				{			
+			if (tm_p->tm_hour >= 13 && tm_p->tm_hour <= 23)	//If hour is pm, take 12 hours away to convert to 12 hour time.
+			{
+				tm_p->tm_hour = tm_p->tm_hour - 12;
+			}
+			
+			/*switch statement for converting minutes to words*/
+			switch(newmin)	//Switch statement involving minutes
+			{			
 					case 1:
 					{
 						printf("It's just gone %s.\n", wordhour[tm_p->tm_hour] );
@@ -416,7 +405,7 @@
 						printf("It's %d minutes past %s.\n", tm_p->tm_min, wordhour[tm_p->tm_hour] );
 						break;
 					}	
-				}
+			}	
 			
 			if (newmin != tm_p->tm_min)
 			{
@@ -426,9 +415,9 @@
 			{
 				Sleep(10000);	//sleep for 10 seconds (10,000 milliseconds)
 			}
+			
+			return main();
 		}
-
-		return main();
 
 		return 0;
 	}
