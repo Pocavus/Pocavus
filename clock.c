@@ -16,6 +16,11 @@
 		struct tm *tm_p;	//time value is tm_p (EG: hour is 'tm_p->tm_hour')
 		epoch_time = time( NULL );	//convert epoch_time into a readable format
 		tm_p = localtime( &epoch_time );	//Get time from local (system) time of the device.
+		
+		if (tm_p->tm_hour > 12)	//If hour is pm, take 12 hours away to convert to 12 hour time.
+		{
+			tm_p->tm_hour = tm_p->tm_hour - 12;
+		}
 
 		for(;;) 
 		{
@@ -30,11 +35,6 @@
 			len = strlen(time_str);	//set variable 'len' equal to length of 'time_str' string
 			time_str[--len] = '\0';	// get rid of newline
 			newmin = tm_p->tm_min;	//set 'newmin' equal to the current minute
-
-			if (tm_p->tm_hour >= 13 && tm_p->tm_hour <= 23)	//If hour is pm, take 12 hours away to convert to 12 hour time.
-			{
-				tm_p->tm_hour = tm_p->tm_hour - 12;
-			}
 			
 			/*switch statement for converting minutes to words*/
 			switch(newmin)	//Switch statement involving minutes
