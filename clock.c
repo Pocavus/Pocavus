@@ -1,7 +1,7 @@
 #include <stdio.h>	//Standard header for (input and/or) output
 #include <time.h>	//Allows program to deal with time functions
 #include <windows.h>	//Allows Sleep() function
-#include <stdlib.h>	//Standard library
+#include <stdlib.h>
 
 	/*Main clock function*/
 	int main() 
