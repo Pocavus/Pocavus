@@ -1,7 +1,7 @@
 #include <stdio.h>	//Standard header for (input and/or) output
 #include <time.h>	//Allows program to deal with time functions
 #include <windows.h>	//Allows Sleep() function
-#include <stdlib.h>
+#include <stdlib.h>	//Standard library
 
 	/*Main clock function*/
 	int main() 
@@ -16,7 +16,7 @@
 		time_t epoch_time;	//variable for time since epoch
 		struct tm *tm_p;	//time value is tm_p (EG: hour is 'tm_p->tm_hour')
 		epoch_time = time( NULL );	//convert epoch_time into a readable format
-		tm_p = localtime( &epoch_time );	//Get time from local (system) time of the device.
+		tm_p = localtime( &epoch_time ); //Get time from local (system) time of the device.
 
 		for(;;) //Never-ending for loop (will always execute)
 		{			
@@ -28,7 +28,7 @@
 
 			time_t clock = time(NULL);
 			time_str = ctime(&clock);
-			len = strlen(time_str);	//set variable 'len' equal to length of 'time_str' string
+			len = strlen(time_str);	//set variable 'len' = length of 'time_str' string
 			time_str[--len] = '\0';	//Omit terminating character at end of string
 			newmin = tm_p->tm_min;	//set 'newmin' equal to the current minute
 			
@@ -202,3 +202,4 @@
 
 		return 0;
 	}
+ 
